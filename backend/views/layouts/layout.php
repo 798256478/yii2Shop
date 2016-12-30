@@ -161,12 +161,6 @@
                 </a>
             </li>            
             <li>
-                <a href="chart-showcase.html">
-                    <i class="icon-signal"></i>
-                    <span>统计</span>
-                </a>
-            </li>
-            <li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-group"></i>
                     <span>管理员管理</span>
@@ -211,29 +205,11 @@
                     <li><a href="<?= yii\helpers\Url::to(['product/productlist'])?>">商品列表</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="gallery.html">
-                    <i class="icon-picture"></i>
-                    <span>相册管理</span>
-                </a>
-            </li>
+
             <li>
                 <a href="calendar.html">
                     <i class="icon-calendar-empty"></i>
-                    <span>日历事件管理</span>
-                </a>
-            </li>
-            <li>
-                <a href="tables.html">
-                    <i class="icon-th-large"></i>
-                    <span>表格</span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="personal-info.html">
-                    <i class="icon-cog"></i>
-                    <span>我的信息</span>
+                    <span>订单管理</span>
                 </a>
             </li>
             
@@ -282,7 +258,9 @@
                 values: [ 40, 170 ],
             });
 
-            
+            $('#addpic').click(function(){
+                $('#product-image').after('<input type="file" id="product-image" class="span9" name="Product[image][]" multiple="" style="margin-left:120px">');
+            });
 
             // jQuery Flot Chart
             var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];

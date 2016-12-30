@@ -15,8 +15,8 @@
                 </div>
 
                     <?php
-                    if (Yii::$app->session->hasFlash('info')) {
-                        echo Yii::$app->session->getFlash('info');
+                    if (Yii::$app->session->hasFlash('message')) {
+                        echo Yii::$app->session->getFlash('message');
                     }
                     ?>
                 <!-- Users table -->

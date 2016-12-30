@@ -2,7 +2,7 @@
     use yii\bootstrap\ActiveForm;
     use yii\helpers\Html;
 ?>
-    <link rel="stylesheet" href="assets/admin/css/compiled/new-user.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/css/compiled/new-user.css" type="text/css" media="screen" />
     <!-- main container -->
     <div class="content">
         <div class="container-fluid">
@@ -15,8 +15,8 @@
                     <div class="span9 with-sidebar">
                         <div class="container">
                                 <?php
-                                if (Yii::$app->session->hasFlash('info')) {
-                                    echo Yii::$app->session->getFlash('info');
+                                if (Yii::$app->session->hasFlash('message')) {
+                                    echo Yii::$app->session->getFlash('message');
                                 }
                                 $form = ActiveForm::begin([
                                     'fieldConfig' => [
@@ -27,30 +27,28 @@
                                         'enctype' => 'multipart/form-data'
                                     ],
                                 ]);
-                                echo $form->field($model, 'cateid')->dropDownList($opts, ['id' => 'cates']);
-                                echo $form->field($model, 'title')->textInput(['class' => 'span9']);
-                                echo $form->field($model, 'descr')->textarea(['id' => "wysi", 'class' => "span9 wysihtml5", 'style' => 'margin-left:120px']);
+                                echo $form->field($model, 'cate_id')->dropDownList($opts, ['id' => 'cates']);
+                                echo $form->field($model, 'name')->textInput(['class' => 'span9']);
+                                echo $form->field($model, 'intro')->textarea(['id' => "wysi", 'class' => "span9 wysihtml5"]);
                                 echo $form->field($model, 'price')->textInput(['class' => 'span9']);
                                 echo $form->field($model, 'ishot')->radioList([0 => '不热卖', 1 => '热卖'], ['class' => 'span8']);
-                                echo $form->field($model, 'issale')->radioList(['不促销', '促销'], ['class' => 'span8']);
-                                echo $form->field($model, 'saleprice')->textInput(['class' => 'span9']);
                                 echo $form->field($model, 'num')->textInput(['class' => 'span9']);
                                 echo $form->field($model, 'ison')->radioList(['下架', '上架'], ['class' => 'span8']);
-                                echo $form->field($model, 'istui')->radioList(['不推荐', '推荐'], ['class' => 'span8']);
+                                echo $form->field($model, 'isrecommend')->radioList(['不推荐', '推荐'], ['class' => 'span8']);
                                 echo $form->field($model, 'cover')->fileInput(['class' => 'span9']);
                                 if (!empty($model->cover)):
                                 ?>
-                                    <img src="<?php echo $model->cover;?>-covermiddle">
+                                    <img src="<?php echo 'http://'.$model->cover.'?imageView2/2/w/200/h/200/interlace/0/q/100';?>">
                                     <hr>
                                 <?php
                                     endif;
-                                    echo $form->field($model, 'pics[]')->fileInput(['class' => 'span9', 'multiple' => true,]);
+                                    echo $form->field($model, 'image[]')->fileInput(['class' => 'span9', 'multiple' => true,]);
                                 ?>
                                 <?php
-                                    foreach((array)json_decode($model->pics, true) as $k=>$pic) {
+                                    foreach((array)json_decode($model->image) as $k=>$pic) {
                                 ?>
-                                    <img src="<?php echo $pic ?>-coversmall">
-                                    <a href="<?php echo yii\helpers\Url::to(['product/removepic', 'key' => $k, 'productid' => $model->productid]) ?>">删除</a>
+                                    <img src="<?php echo 'http://'.$pic.'?imageView2/2/w/100/h/100/interlace/0/q/100'?>">
+                                    <a href="<?php echo yii\helpers\Url::to(['product/removepic', 'key' => $k, 'id' => $model->id]) ?>">删除</a>
                                 <?php
                                 }
                                 ?>

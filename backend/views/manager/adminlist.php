@@ -96,7 +96,7 @@
                                 <?php echo $model->logintime? $model->logintime:"从未登录";?>
                             </td>
                             <td>
-                                <?php echo $model->loginip? $model->loginip:"从未登录";?>
+                                <?php echo $model->loginip? long2ip($model->loginip):"从未登录";?>
                             </td>
                             <td>
                                 <?php echo $model->create_at;?>

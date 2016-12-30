@@ -15,7 +15,7 @@ class m161223_055308_create_category_table extends Migration
         $this->createTable('category', [
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull()->comment('分类名称'),
-            'parent_id' => $this->integer()->notNull()->comment('父类id'),
+            'parent_id' => $this->integer()->notNull()->defaultValue(0)->comment('父类id'),
             'create_time' => $this->timestamp()->notNull(),
         ]);
     }

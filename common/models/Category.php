@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
 */
 class Category extends ActiveRecord
 {
+
 	public static function tableName()
 	{
 		return "category";
@@ -26,7 +27,7 @@ class Category extends ActiveRecord
 	{
 		return [
 			['title', 'required', 'message' => '分类名称不能为空'],
-			['parent_id', 'safe'],
+			['parent_id', 'default', 'value' => 0],
 		];
 	}
 

@@ -1,12 +1,12 @@
 <?php
 namespace frontend\controllers;
 
-use yii\web\Controller;
+use frontend\controllers\BaseController;
 
 /**
 * 会员
 */
-class MemberController extends Controller
+class MemberController extends BaseController
 {
 	public function actionAuth()
 	{

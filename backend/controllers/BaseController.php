@@ -10,6 +10,7 @@ use Yii;
 */
 class BaseController extends Controller
 {
+	public $layout = 'layout';
 	public function init() {
 		if(!isset(Yii::$app->session['admin']['isLogin'])){
 			return $this->redirect(["/admin/login"]);

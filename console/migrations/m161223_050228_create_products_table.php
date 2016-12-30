@@ -18,7 +18,7 @@ class m161223_050228_create_products_table extends Migration
             'name' => $this->string()->notNull()->comment('商品名称'),
             'cover' => $this->string()->notNull()->comment('商品封面图片'),
             'price' => $this->string()->notNull()->comment('商品价格'),
-            'image' => $this->string()->notNull()->comment('商品图片'),
+            'image' => $this->text()->notNull()->comment('商品图片'),
             'intro' => $this->text()->comment('商品描述'),
             'num' => $this->integer()->notNull()->defaultValue(0)->comment('商品库存'),
             'ishot' => 'enum("0", "1") not null default "0" comment "是否热卖"',

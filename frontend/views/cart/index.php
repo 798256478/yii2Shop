@@ -3,28 +3,27 @@
     <div class="container">
         <!-- ========================================= CONTENT ========================================= -->
         <div class="col-xs-12 col-md-9 items-holder no-margin">
-            
+            <?php $totalPrice = 0; foreach ($this->params['cart'] as $key => $value): $totalPrice+=$value->productnum * $value->products->price;?>
             <div class="row no-margin cart-item">
                 <div class="col-xs-12 col-sm-2 no-margin">
                     <a href="#" class="thumb-holder">
-                        <img class="lazy" alt="" src="/assets/images/products/product-small-01.jpg" />
+                        <img class="lazy" alt="" src="<?= 'http://'.$value->products->cover.'?imageView2/2/w/75/h/75/interlace/0/q/100'?>" />
                     </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-5 ">
                     <div class="title">
-                        <a href="#">white lumia 9001</a>
+                        <a href="#"><?= $value->products->name?></a>
                     </div>
-                    <div class="brand">sony</div>
                 </div> 
 
                 <div class="col-xs-12 col-sm-3 no-margin">
                     <div class="quantity">
                         <div class="le-quantity">
                             <form>
-                                <a class="minus" href="#reduce"></a>
-                                <input name="quantity" readonly="readonly" type="text" value="1" />
-                                <a class="plus" href="#add"></a>
+                                <a class="minus" href="<?= yii\helpers\Url::to(['cart/subnum','id' => $value->id])?>"></a>
+                                <input name="quantity" readonly="readonly" type="text" value="<?= $value->productnum?>" />
+                                <a class="plus" href="<?= yii\helpers\Url::to(['cart/addnum', 'id' => $value->id])?>"></a>
                             </form>
                         </div>
                     </div>
@@ -32,113 +31,12 @@
 
                 <div class="col-xs-12 col-sm-2 no-margin">
                     <div class="price">
-                        $2000.00
+                        ￥<?= $value->productnum * $value->products->price?>
                     </div>
                     <a class="close-btn" href="#"></a>
                 </div>
             </div><!-- /.cart-item -->
-
-            <div class="row no-margin cart-item">
-                <div class="col-xs-12 col-sm-2 no-margin">
-                    <a href="#" class="thumb-holder">
-                        <img class="lazy" alt="" src="/assets/images/products/product-small-01.jpg" />
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-5">
-                    <div class="title">
-                        <a href="#">white lumia 9001 </a>
-                    </div>
-                    <div class="brand">sony</div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-3 no-margin">
-                    <div class="quantity">
-                        <div class="le-quantity">
-                            <form>
-                                <a class="minus" href="#reduce"></a>
-                                <input name="quantity" readonly="readonly" type="text" value="1" />
-                                <a class="plus" href="#add"></a>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-2 no-margin">
-                    <div class="price">
-                        $2000.00
-                    </div>
-                    <a class="close-btn" href="#"></a>
-                </div>
-            </div><!-- /.cart-item -->
-
-            <div class="row no-margin cart-item">
-                <div class="col-xs-12 col-sm-2 no-margin">
-                    <a href="#" class="thumb-holder">
-                        <img class="lazy" alt="" src="/assets/images/products/product-small-01.jpg" />
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-5">
-                    <div class="title">
-                        <a href="#">white lumia 9001 </a>
-                    </div>
-                    <div class="brand">sony</div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-3 no-margin">
-                    <div class="quantity">
-                        <div class="le-quantity">
-                            <form>
-                                <a class="minus" href="#reduce"></a>
-                                <input name="quantity" readonly="readonly" type="text" value="1" />
-                                <a class="plus" href="#add"></a>
-                            </form>
-                        </div>
-                    </div>
-                </div> 
-                
-                <div class="col-xs-12 col-sm-2 no-margin">
-                    <div class="price">
-                        $2000.00
-                    </div>
-                    <a class="close-btn" href="#"></a>
-                </div>
-            </div><!-- /.cart-item -->
-
-            <div class="row no-margin cart-item">
-                <div class="col-xs-12 col-sm-2 no-margin">
-                    <a href="#" class="thumb-holder">
-                        <img class="lazy" alt="" src="/assets/images/products/product-small-01.jpg" />
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-5">
-                    <div class="title">
-                        <a href="#">white lumia 9001 </a>
-                    </div>
-                    <div class="brand">sony</div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-3 no-margin">
-                    <div class="quantity">
-                        <div class="le-quantity">
-                            <form>
-                                <a class="minus" href="#reduce"></a>
-                                <input name="quantity" readonly="readonly" type="text" value="1" />
-                                <a class="plus" href="#add"></a>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-2 no-margin">
-                    <div class="price">
-                        $2000.00
-                    </div>
-                    <a class="close-btn" href="#"></a>
-                </div>
-            </div><!-- /.cart-item -->
+            <?php endforeach ?>
         </div>
         <!-- ========================================= CONTENT : END ========================================= -->
 
@@ -151,22 +49,18 @@
                     <ul class="tabled-data no-border inverse-bold">
                         <li>
                             <label>购物车总价</label>
-                            <div class="value pull-right">$8434.00</div>
-                        </li>
-                        <li>
-                            <label>运费</label>
-                            <div class="value pull-right">$10</div>
+                            <div class="value pull-right">￥<?=$totalPrice?></div>
                         </li>
                     </ul>
                     <ul id="total-price" class="tabled-data inverse-bold no-border">
                         <li>
                             <label>订单总价</label>
-                            <div class="value pull-right">$8444.00</div>
+                            <div class="value pull-right">￥<?=$totalPrice?></div>
                         </li>
                     </ul>
                     <div class="buttons-holder">
-                        <a class="le-button big" href="checkout.html" >去结算</a>
-                        <a class="simple-link block" href="index.html" >继续购物</a>
+                        <a class="le-button big" href="<?= yii\helpers\Url::to(['/order/check'])?>" >去结算</a>
+                        <a class="simple-link block" href="<?= yii\helpers\Url::to(['/product/index'])?>">继续购物</a>
                     </div>
                 </div>
             </div><!-- /.widget -->

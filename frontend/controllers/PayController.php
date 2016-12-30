@@ -1,12 +1,12 @@
 <?php
 namespace frontend\controllers;
 
-use yii\web\Controller;
+use frontend\controllers\BaseController;
 
 /**
 * 支付
 */
-class PayController extends Controller
+class PayController extends BaseController
 {
 	public function actionStatus()
 	{

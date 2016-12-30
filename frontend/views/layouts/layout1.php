@@ -44,17 +44,17 @@
     <div class="container">
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="category-grid.html">所有分类</a></li>
-                <li><a href="cart.html">我的购物车</a></li>
-                <li><a href="orders.html">我的订单</a></li>
+                <li><a href="/">首页</a></li>
+                <li><a href="/product/index">所有分类</a></li>
+                <li><a href="/cart/index">我的购物车</a></li>
+                <li><a href="/order/index">我的订单</a></li>
             </ul>
         </div><!-- /.col -->
 
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul class="right">
-                <li><a href="authentication.html">注册</a></li>
-                <li><a href="authentication.html">登录</a></li>
+                <li><a href="/member/qqreg">注册</a></li>
+                <li><a href="/member/auth">登录</a></li>
             </ul>
         </div><!-- /.col -->
     </div><!-- /.container -->
@@ -65,20 +65,20 @@
         
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
             <!-- ============================================================= LOGO ============================================================= -->
-<div class="logo">
-    <a href="index.html">
-        <img alt="logo" src="/assets/images/logo.PNG" width="233" height="54"/>
-    </a>
-</div><!-- /.logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Yii2商城</h1>
+                </a>
+            </div><!-- /.logo -->
 <!-- ============================================================= LOGO : END ============================================================= -->     </div><!-- /.logo-holder -->
 
         <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder no-margin">
             <div class="contact-row">
     <div class="phone inline">
-        <i class="fa fa-phone"></i> (+086) 123 456 7890
+        <i class="fa fa-phone"></i> (+086) 15737135239
     </div>
     <div class="contact inline">
-        <i class="fa fa-envelope"></i> contact@<span class="le-color">jason.com</span>
+        <i class="fa fa-envelope"></i> 798256478@<span class="le-color">qq.com</span>
     </div>
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
@@ -93,11 +93,9 @@
                     <a class="dropdown-toggle"  data-toggle="dropdown" href="category-grid.html">所有分类</a>
 
                     <ul class="dropdown-menu" role="menu" >
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">电子产品</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">电子产品</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">电子产品</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">电子产品</a></li>
-
+                        <?php foreach ($this->params['category'] as $key => $value):?>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html"><?= $value['title']?></a></li>
+                        <?php endforeach;?>
                     </ul>
                 </li>
             </ul>
@@ -119,79 +117,46 @@
             
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <div class="basket-item-count">
-                    <span class="count">3</span>
+                    <span class="count"><?= $this->params['totalnum']?></span>
                     <img src="/assets/images/icon-cart.png" alt="" />
                 </div>
 
                 <div class="total-price-basket"> 
                     <span class="lbl">您的购物车:</span>
                     <span class="total-price">
-                        <span class="sign">￥</span><span class="value">3219</span>
+                        <span class="sign">￥</span><span class="value"><?= $this->params['totalprice']?></span>
                     </span>
                 </div>
             </a>
 
             <ul class="dropdown-menu">
+                <?php foreach ($this->params['cart'] as $key => $value): ?>
                 <li>
                     <div class="basket-item">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 no-margin text-center">
                                 <div class="thumb">
-                                    <img alt="" src="/assets/images/products/product-small-01.jpg" />
+                                    <img alt="" src="<?= 'http://'.$value->products->cover.'?imageView2/2/w/75/h/75/interlace/0/q/100'?>" />
                                 </div>
                             </div>
                             <div class="col-xs-8 col-sm-8 no-margin">
-                                <div class="title">前端课程</div>
-                                <div class="price">￥270.00</div>
+                                <div class="title"><?= $value->products->name?></div>
+                                <div class="title">*<?= $value->productnum?></div>
+                                <div class="price">￥<?= $value->productnum * $value->products->price?></div>
                             </div>
                         </div>
                         <a class="close-btn" href="#"></a>
                     </div>
                 </li>
-
-                <li>
-                    <div class="basket-item">
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                <div class="thumb">
-                                    <img alt="" src="/assets/images/products/product-small-01.jpg" />
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 no-margin">
-                                <div class="title">Java课程</div>
-                                <div class="price">￥270.00</div>
-                            </div>
-                        </div>
-                        <a class="close-btn" href="#"></a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="basket-item">
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                <div class="thumb">
-                                    <img alt="" src="/assets/images/products/product-small-01.jpg" />
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 no-margin">
-                                <div class="title">PHP课程</div>
-                                <div class="price">￥270.00</div>
-                            </div>
-                        </div>
-                        <a class="close-btn" href="#"></a>
-                    </div>
-                </li>
-
-
+                <?php endforeach ?>
                 <li class="checkout">
                     <div class="basket-item">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <a href="cart.html" class="le-button inverse">查看购物车</a>
+                                <a href="<?= yii\helpers\Url::to(['/cart/index'])?>" class="le-button inverse">查看购物车</a>
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <a href="checkout.html" class="le-button">去往收银台</a>
+                                <a href="<?= yii\helpers\Url::to(['/order/check'])?>" class="le-button">去往收银台</a>
                             </div>
                         </div>
                     </div>
@@ -426,14 +391,14 @@
                 <!-- ============================================================= CONTACT INFO ============================================================= -->
 <div class="contact-info">
     <div class="footer-logo">
-        <img alt="logo" src="/assets/images/logo.PNG" width="233" height="54"/>
+        <h1>Yii2商城</h1>
     </div><!-- /.footer-logo -->
     
     <p class="regular-bold"> 请通过电话，电子邮件随时联系我们</p>
     
     <p>
-        西城区二环到三环德胜门外大街10号TCL大厦3层(马甸桥南), 北京市西城区, 中国
-        <br>慕课网 (QQ群:416465236)
+        郑州, 河南, 中国
+        <br>赵文斌 (QQ:798256478)
     </p>
     
     <!--<div class="social-icons">
@@ -461,11 +426,6 @@
             <li><a href="category-grid.html">laptops &amp; computers</a></li>
             <li><a href="category-grid.html">Cameras &amp; Photography</a></li>
             <li><a href="category-grid.html">Smart Phones &amp; Tablets</a></li>
-            <li><a href="category-grid.html">Video Games &amp; Consoles</a></li>
-            <li><a href="category-grid.html">TV &amp; Audio</a></li>
-            <li><a href="category-grid.html">Gadgets</a></li>
-            <li><a href="category-grid.html">Car Electronic &amp; GPS</a></li>
-            <li><a href="category-grid.html">Accesories</a></li>
         </ul>
     </div><!-- /.widget -->
 </div><!-- /.link-widget -->
@@ -477,11 +437,6 @@
             <li><a href="category-grid.html">Find a Store</a></li>
             <li><a href="category-grid.html">About Us</a></li>
             <li><a href="category-grid.html">Contact Us</a></li>
-            <li><a href="category-grid.html">Weekly Deals</a></li>
-            <li><a href="category-grid.html">Gift Cards</a></li>
-            <li><a href="category-grid.html">Recycling Program</a></li>
-            <li><a href="category-grid.html">Community</a></li>
-            <li><a href="category-grid.html">Careers</a></li>
 
         </ul>
     </div><!-- /.widget -->
@@ -494,11 +449,6 @@
             <li><a href="category-grid.html">My Account</a></li>
             <li><a href="category-grid.html">Order Tracking</a></li>
             <li><a href="category-grid.html">Wish List</a></li>
-            <li><a href="category-grid.html">Customer Service</a></li>
-            <li><a href="category-grid.html">Returns / Exchange</a></li>
-            <li><a href="category-grid.html">FAQs</a></li>
-            <li><a href="category-grid.html">Product Support</a></li>
-            <li><a href="category-grid.html">Extended Service Plans</a></li>
         </ul>
     </div><!-- /.widget -->
 </div><!-- /.link-widget -->
@@ -510,7 +460,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-margin">
                 <div class="copyright">
-                    &copy; <a href="index.html">Imooc.com</a> - all rights reserved
+                    &copy; <a href="/">excision.online</a> - all rights reserved
                 </div><!-- /.copyright -->
             </div>
             <div class="col-xs-12 col-sm-6 no-margin">

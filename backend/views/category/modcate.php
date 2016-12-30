@@ -8,15 +8,15 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="new-user">
                 <div class="row-fluid header">
-                    <h3>添加新分类</h3>
+                    <h3>编辑分类</h3>
                 </div>
                 <div class="row-fluid form-wrapper">
                     <!-- left column -->
                     <div class="span9 with-sidebar">
                         <div class="container">
                                 <?php
-                                if (Yii::$app->session->hasFlash('info')) {
-                                    echo Yii::$app->session->getFlash('info');
+                                if (Yii::$app->session->hasFlash('message')) {
+                                    echo Yii::$app->session->getFlash('message');
                                 }
                                 $form = ActiveForm::begin([
                                     'fieldConfig' => [
@@ -26,11 +26,11 @@
                                         'class' => 'new_user_form inline-input',
                                     ],
                                     ]);
-                                echo $form->field($model, 'parent_id')->dropDownList($opts, ['prompt' => '顶级分类']);
+                                echo $form->field($model, 'parent_id')->dropDownList($opts, ['prompt' => '顶级分类', 'options' => [$selected => ['selected' => true]]]);
                                 echo $form->field($model, 'title')->textInput(['class' => 'span9']);
                                 ?>
                                 <div class="span11 field-box actions">
-                                    <?php echo Html::submitButton('添加', ['class' => 'btn-glow primary']); ?>
+                                    <?php echo Html::submitButton('修改', ['class' => 'btn-glow primary']); ?>
                                     <span>OR</span>
                                     <?php echo Html::resetButton('取消', ['class' => 'reset']); ?>
                                 </div>
